@@ -1,10 +1,37 @@
 import { createPortal } from "react-dom";
+import { useEffect, useRef } from "react";
 import "./ExerciseModal.css";
 
 function ExerciseModal({exercise, closeModal}) {
+    const modalRef = useRef();
+
+    useEffect(()=> {
+        function handleClickOutside(event) {
+            if(
+                modalRef.current && !modalRef.current.contains(event.target)
+            ){
+                closeModal();
+            }
+        }
+
+        function handleEscape(event) {
+            if(event.key === "Escape"){
+                closeModal();
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("keydown", handleEscape);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("keydown", handleEscape);
+        };
+    },[closeModal]);
+
     return createPortal(
         <div className="modal-overlay">
-            <div className="modal-content">
+            <div className="modal-content" ref={modalRef}>
                 <button className="close-button" onClick={closeModal}>
                     X
                 </button>
