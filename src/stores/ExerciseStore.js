@@ -12,6 +12,7 @@ class ExerciseStore {
             loading: observable,
             setExercises: action,
             setLoading: action,
+            fetchExercises: action,
         });
     }
 
