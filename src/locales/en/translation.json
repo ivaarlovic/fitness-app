@@ -1,0 +1,35 @@
+{
+  "home": "Home",
+  "exercises": "Exercises",
+  "favorites": "Favorites",
+  "workout": "Workout",
+  "profile": "Profile",
+
+  "heroText": "Track your workouts and build your own fitness journey.",
+  "exploreExercises": "Explore Exercises",
+
+  "popularCategories": "Popular categories",
+
+  "target": "Target",
+  "equipment": "Equipment",
+  "difficulty": "Difficulty",
+  "details": "Details",
+  "viewDetails": "View details",
+  "bodyPart": "Body part",
+  "description": "Description",
+
+  "Chest": "Chest",
+  "Back": "Back",
+  "Legs": "Legs",
+  "Shoulders": "Shoulders",
+  "Arms": "Arms",
+  "Cardio": "Cardio",
+
+  "Body Weight": "Body Weight",
+  "Dumbbell": "Dumbbell",
+  "Barbell": "Barbell",
+
+  "Beginner": "Beginner",
+  "Intermediate": "Intermediate",
+  "Advanced": "Advanced"
+}
