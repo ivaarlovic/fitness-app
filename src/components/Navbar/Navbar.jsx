@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { useTranslation } from "react-i18next";
+import useTheme from "../../hooks/useTheme";
 
 function Navbar() {
 
     const { t, i18n } = useTranslation();
-
     const changeLanguage = (language) => {
         i18n.changeLanguage(language);
     };
+
+    const {theme, toggleTheme} = useTheme();
 
     return(
         <nav className="navbar">
@@ -41,6 +43,10 @@ function Navbar() {
 
                 <button onClick={() => changeLanguage("en")}>
                     EN
+                </button>
+
+                <button className="theme-button" onClick={toggleTheme}>
+                    {theme === "light" ? "🌙 Dark" : "☀️ Light"}
                 </button>
         </div>
     </nav>
