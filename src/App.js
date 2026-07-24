@@ -1,14 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./pages/Home/Home";
-import Exercises from "./pages/Exercises/Exercises";
-import Workout from "./pages/Workout/Workout";
-import Profile from "./pages/Profile/Profile";
-import Favorites from "./pages/Favorites/Favorites";
+import {lazy, Suspense} from "react";
+import Loading from "./components/Loading/Loading";
+
+const Home = lazy(() => import("./pages/Home/Home"));
+const Exercises = lazy(() => import("./pages/Exercises/Exercises"));
+const Workout = lazy(() => import("./pages/Workout/Workout"));
+const Profile = lazy(() => import("./pages/Profile/Profile"));
+const Favorites = lazy(() => import("./pages/Favorites/Favorites"));
+const Navbar = lazy(() => import("./components/Navbar/Navbar"));
 
 function App() {
     return (
         <BrowserRouter>
+            <Suspense fallback={<Loading />}>
             <Navbar />
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -17,6 +21,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/workout" element={<Workout />} />
             </Routes>
+            </Suspense>
         </BrowserRouter>
     );
 }
