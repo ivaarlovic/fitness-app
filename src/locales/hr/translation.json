@@ -1,0 +1,34 @@
+{
+  "home": "Početna",
+  "exercises": "Vježbe",
+  "favorites": "Omiljene",
+  "workout": "Trening",
+  "profile": "Profil",
+
+  "heroText": "Prati svoje treninge i izgradi vlastiti fitness put.",
+  "exploreExercises": "Istraži vježbe",
+  "popularCategories": "Popularne kategorije",
+
+  "target": "Ciljani mišić",
+  "equipment": "Oprema",
+  "difficulty": "Težina",
+  "details": "Detalji",
+  "viewDetails": "Prikaži detalje",
+  "bodyPart": "Dio tijela",
+  "description": "Opis",
+
+  "Chest": "Prsa",
+  "Back": "Leđa",
+  "Legs": "Noge",
+  "Shoulders": "Ramena",
+  "Arms": "Ruke",
+  "Cardio": "Kardio",
+
+  "Body Weight": "Vlastita težina",
+  "Dumbbell": "Bučice",
+  "Barbell": "Šipka",
+
+  "Beginner": "Početnik",
+  "Intermediate": "Srednji",
+  "Advanced": "Napredni"
+}

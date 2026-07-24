@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import StoreContext from './context/StoreContext';
 import rootStore from './stores/RootStore';
+import "./i18n";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
