@@ -1,13 +1,27 @@
 import { Link } from "react-router-dom";
 import "./Hero.css";
+import { useTranslation } from "react-i18next";
 
 function Hero() {
+
+    const { t } = useTranslation();
+
     return (
         <section className="hero">
+
             <h1>FitTrack</h1>
-            <p>Track your workouts and build your own fitness journey.</p>
-            <Link to="/exercises" className="hero-btn">
-            Explore Exercises</Link>
+
+            <p>
+                {t("heroText")}
+            </p>
+
+            <Link 
+                to="/exercises" 
+                className="hero-btn"
+            >
+                {t("exploreExercises")}
+            </Link>
+
         </section>
     );
 }
