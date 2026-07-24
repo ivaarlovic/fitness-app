@@ -30,6 +30,24 @@
     color: #222;
 }
 
+.exercise-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.favorite-button{
+    border:none;
+    background:none;
+    font-size:28px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.favorite-button:hover{
+    transform:scale(1.2);
+}
+
 
 .exercise-card p {
     margin: 8px 0;

@@ -1,19 +1,32 @@
-import { makeObservable, observable, action, runInAction } from "mobx";
+import { makeObservable, observable, action, runInAction, reaction } from "mobx";
 import exerciseApi from "../exerciseApi";
 import { getExerciseImage } from "../exerciseApi";
 
 class ExerciseStore {
     exercises = [];
     loading = false;
+    favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     constructor() {
         makeObservable(this, {
             exercises: observable,
             loading: observable,
+            favorites: observable,
             setExercises: action,
             setLoading: action,
             fetchExercises: action,
+            toggleFavorite: action, 
         });
+
+        reaction(
+            () => this.favorites.slice(),
+            (favorites) => {
+                localStorage.setItem(
+                    "favorites",
+                    JSON.stringify(favorites)
+                );
+            }
+        );
     }
 
     setLoading(value) {
@@ -52,6 +65,16 @@ class ExerciseStore {
             });
         }
     }
+
+    toggleFavorite(exercise) {
+    const isFavorite = this.favorites.some((fav) => fav.id === exercise.id);
+
+    if (isFavorite) {
+        this.favorites = this.favorites.filter((fav) => fav.id !== exercise.id);
+    } else {
+        this.favorites = [...this.favorites, exercise];
+    }
+}
 
 }
 

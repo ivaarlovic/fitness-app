@@ -3,8 +3,10 @@ import { useEffect } from "react";
 import ExerciseCard from "../../components/ExerciseCard/ExerciseCard";
 import useStore from "../../hooks/useStore";
 import "./Exercises.css";
+import { useTranslation } from "react-i18next";
 
 const Exercises = observer(() =>{
+    const { t } = useTranslation();
 const { exerciseStore} = useStore();
 
     useEffect(()=> {
@@ -19,7 +21,7 @@ const { exerciseStore} = useStore();
 
     return (
         <div>
-            <h1>Exercises</h1>
+            <h1>{t("exercises")}</h1>
             <div className="exercises-container">
                 {
                 exerciseStore.exercises.map(exercise => (

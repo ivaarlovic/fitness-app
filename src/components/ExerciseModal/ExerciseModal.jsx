@@ -1,21 +1,24 @@
 import { createPortal } from "react-dom";
 import { useEffect, useRef } from "react";
 import "./ExerciseModal.css";
+import { useTranslation } from "react-i18next";
 
-function ExerciseModal({exercise, closeModal}) {
+function ExerciseModal({ exercise, closeModal }) {
+    const { t } = useTranslation();
+
     const modalRef = useRef();
 
-    useEffect(()=> {
+    useEffect(() => {
         function handleClickOutside(event) {
-            if(
+            if (
                 modalRef.current && !modalRef.current.contains(event.target)
-            ){
+            ) {
                 closeModal();
             }
         }
 
         function handleEscape(event) {
-            if(event.key === "Escape"){
+            if (event.key === "Escape") {
                 closeModal();
             }
         }
@@ -27,7 +30,7 @@ function ExerciseModal({exercise, closeModal}) {
             document.removeEventListener("mousedown", handleClickOutside);
             document.removeEventListener("keydown", handleEscape);
         };
-    },[closeModal]);
+    }, [closeModal]);
 
     return createPortal(
         <div className="modal-overlay">
@@ -36,20 +39,32 @@ function ExerciseModal({exercise, closeModal}) {
                     X
                 </button>
 
-                <h2>{exercise.name}</h2>
+                <h2>{t(exercise.name)}</h2>
 
                 <div className="exercise-info">
-                    <p><strong>Body part: </strong>{exercise.bodyPart}</p>
-                    <p><strong>Target: </strong>{exercise.target}</p>
-                    <p><strong>Equipment: </strong>{exercise.equipment}</p>
-                    <p><strong>Difficulty: </strong>{exercise.difficulty}</p>
+                    <p>
+                        <strong>{t("bodyPart")}: </strong>
+                        {exercise.bodyPart}
+                    </p>
+                    <p>
+                        <strong>{t("target")}: </strong>
+                        {exercise.target}
+                    </p>
+                    <p>
+                        <strong>{t("equipment")}: </strong>
+                        {exercise.equipment}
+                    </p>
+                    <p>
+                        <strong>{t("difficulty")}: </strong>
+                        {exercise.difficulty}
+                    </p>
                 </div>
-                <h3>Description: </h3>
+                <h3>{t("description")}:</h3>
                 <p>{exercise.description}</p>
 
                 <ol>
                     {
-                        exercise.instructions.map((step,index) => (
+                        exercise.instructions.map((step, index) => (
                             <li key={index}>
                                 {step}
                             </li>

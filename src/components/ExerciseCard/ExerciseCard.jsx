@@ -1,8 +1,16 @@
 import "./ExerciseCard.css";
 import ExerciseModal from "../ExerciseModal/ExerciseModal";
 import { useState } from "react";
+import useStore from "../../hooks/useStore";
+import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 
-function ExerciseCard({ exercise }) {
+const ExerciseCard = observer(({ exercise }) => {
+
+    const { t } = useTranslation();
+
+    const { exerciseStore } = useStore();
+    const isFavorite = exerciseStore.favorites.some((fav) => fav.id === exercise.id); // vraca true, false
 
     const [showModal, setShowModal] = useState(false);
 
@@ -16,27 +24,36 @@ function ExerciseCard({ exercise }) {
             />
 
 
-            <h3>
-                {exercise.name}
-            </h3>
+            <div className="exercise-header">
+
+                <h3>{exercise.name}</h3>
+
+                <button
+                    className="favorite-button"
+                    onClick={() => exerciseStore.toggleFavorite(exercise)}
+                >
+                    {isFavorite ? "❤️" : "🤍"}
+                </button>
+
+            </div>
 
 
             <p>
-                Target: {exercise.target}
+                {t("target")}: {t(exercise.target)}
             </p>
 
 
             <p>
-                Equipment: {exercise.equipment}
+                {t("equipment")}: {t(exercise.equipment)}
             </p>
 
 
             <p>
-                Difficulty: {exercise.difficulty}
+                {t("difficulty")}: {t(exercise.difficulty)}
             </p>
 
             <button onClick={() => setShowModal(true)} className="details-btn">
-                View details
+                {t("viewDetails")}
             </button>
 
 
@@ -52,6 +69,6 @@ function ExerciseCard({ exercise }) {
 
     );
 
-}
+});
 
 export default ExerciseCard;

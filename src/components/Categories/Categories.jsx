@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import "./Categories.css";
 
 function Categories() {
+    const { t } = useTranslation();
+
     const categories = [
         "Chest",
         "Back",
@@ -12,12 +15,12 @@ function Categories() {
 
     return (
         <section className="categories">
-            <h2>Popular categories</h2>
+            <h2>{t("popularCategories")}</h2>
             <div className="category-grid">
                 {
                 categories.map(category => (
                     <div className="category-btn" key={category}>
-                        {category}
+                        {t(category)}
                     </div>
                 ))}
             </div>
