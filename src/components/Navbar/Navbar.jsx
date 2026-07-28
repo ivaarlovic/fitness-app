@@ -2,21 +2,32 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { useTranslation } from "react-i18next";
 import useTheme from "../../hooks/useTheme";
+import { useNavigate } from "react-router-dom";
+import useStore from "../../hooks/useStore";
 
 function Navbar() {
+
+    const { authStore } = useStore();
+    const navigate = useNavigate();
+    const loginUser = JSON.parse(localStorage.getItem("loginUser"));
 
     const { t, i18n } = useTranslation();
     const changeLanguage = (language) => {
         i18n.changeLanguage(language);
     };
 
-    const {theme, toggleTheme} = useTheme();
+    const { theme, toggleTheme } = useTheme();
 
-    return(
+    function handleLogout() {
+        authStore.logout();
+        navigate("/");
+    }
+
+    return (
         <nav className="navbar">
-        <h2 className="logo">FitTrack</h2>
-        <div className="nav-links">
-             <Link to="/">
+            <h2 className="logo">FitTrack</h2>
+            <div className="nav-links">
+                <Link to="/">
                     {t("home")}
                 </Link>
 
@@ -48,10 +59,21 @@ function Navbar() {
                 <button className="theme-button" onClick={toggleTheme}>
                     {theme === "light" ? "🌙 Dark" : "☀️ Light"}
                 </button>
-        </div>
-    </nav>
+
+                {
+                    loginUser ? (
+                        <>
+                            <span>Hello, {authStore.user.email}</span>
+                            <button onClick={handleLogout}>Logout</button>
+                        </>
+                    ) : (
+                        <Link to="/">Login</Link>
+                    )
+                }
+            </div>
+        </nav>
     );
-    
+
 }
 
 export default Navbar;
